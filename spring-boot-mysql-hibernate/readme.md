@@ -1,5 +1,9 @@
 ## Use a MySQL database in a Spring Boot Web Application through Hibernate
 
+### Import Project
+
+With IntelliJ IDEA up and running, click Import Project on the Welcome Screen. In the pop-up dialog make sure to select Maven's pom.xml.
+
 ### Usage
 
 - Run the application and go on http://localhost:8080/
