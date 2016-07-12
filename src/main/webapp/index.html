@@ -121,7 +121,7 @@ table img{
 					<table class="list-group-item-text">
 						<tr>
 							<td id = "show_appid" rowspan = "2">{{appInfo.appid}}</td>
-							<td id = "show_img" rowspan = "2"><img alt="app_img" ng-src="{{appInfo.thumbnail_url}}"/></td>
+							<td id = "show_img" rowspan = "2"><img alt="app_img" ng-src="{{appInfo.thumbnailUrl}}"/></td>
 							<td id = "show_appname" colspan="2">{{appInfo.title}}</td>
 							<!--calls selectApp function in top.js-->
 							<td id = "get_appdetail" rowspan="2"><button class="btn btn-primary" type="button" ng-click="appInfos.selectApp(appInfo)">GET</button> </td>
@@ -140,7 +140,7 @@ table img{
 				<div class="list-group-item">
 					<table class="show-appInfo-detail">
 						<tr>
-							<td rowspan = "3" colspan="1"><img class="appInfo-detail-img" ng-src="{{appInfos.appToShow.thumbnail_url}}"/></td>
+							<td rowspan = "3" colspan="1"><img class="appInfo-detail-img" ng-src="{{appInfos.appToShow.thumbnailUrl}}"/></td>
 							<td colspan = "1"> {{appInfos.appToShow.appid}}</td>
 						</tr>
 						
@@ -157,23 +157,37 @@ table img{
 					<p>Customers Also Like:</p>
 					<table class="appInfo-recom">
 						<tr >
-							<td ng-repeat="appToRecom in appInfos.appsToRecom"><img ng-src="{{appToRecom.thumbnail_url}}"></td>
+							<td ng-repeat="appToRecom in appInfos.appsToRecom"><img ng-src="{{appToRecom.thumbnailUrl}}"></td>
 						</tr>
 						
 						<tr>
-							<td ng-repeat="appToRecom in appInfos.appsToRecom">{{appToRecom.title}}</td>
+							<td ng-repeat="appToRecom in appInfos.appsToRecom"><a href="{{appToRecom.url}}">{{appToRecom.title}}</a></td>
 						</tr>
 					</table>
 				</div>
-				
-				<div class="list-group-item">
-					<div> <h4>Description:</h4> </div>
-					<div>
-						<p>
-							{{appInfos.appToShow.intro}}
-						</p>
-					</div>
-				</div>
+
+					<div class="list-group-item">
+						<section ng-init="tab = 1">
+							<ul class="nav nav-pills">
+								<li ng-class="{active:tab === 1}">
+									<a href ng-click="tab = 1">Description</a>
+								</li>
+								<li ng-class="{active:tab === 2}">
+									<a href ng-click="tab = 2">Developer</a>
+								</li>
+								<li >
+									<a href="{{appInfos.appToShow.url}}">Download</a>
+								</li>
+							</ul>
+						</section>
+						<div class="panel" ng-show="tab === 1">
+							<p>{{appInfos.appToShow.intro}}</p>
+						</div>
+						<div class="panel" ng-show="tab === 2">
+							<p>{{appInfos.appToShow.developer}}</p>
+						</div>
+
+					 </div>
 			</div>
 			</div>
 
