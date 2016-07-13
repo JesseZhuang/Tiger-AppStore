@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -26,6 +27,25 @@ public class App {
     private String developer;
 
     private String top5App;
+
+    @Transient
+    private String[] top5AppsArr;
+    @Transient
+    public String[] getTop5AppsArray() {
+
+        if(this.top5App != null && this.top5App.length() > 0){
+            this.top5App = this.top5App.substring(1, this.top5App.length()-1);
+
+            String[] appIDs = this.top5App.split(",");
+            this.top5AppsArr = new String[5];
+
+            for(int i = 0 ; i < appIDs.length; i++)
+                this.top5AppsArr[i] = appIDs[i].trim();
+        }else
+            return new String[]{};
+
+        return top5AppsArr;
+    }
 
     // default constructor necessary for hibernate to connect class with mysql database, avoid overriden
     public App(){}
