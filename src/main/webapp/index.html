@@ -161,19 +161,33 @@ table img{
 						</tr>
 						
 						<tr>
-							<td ng-repeat="appToRecom in appInfos.appsToRecom">{{appToRecom.title}}</td>
+							<td ng-repeat="appToRecom in appInfos.appsToRecom"><a href="{{appToRecom.url}}">{{appToRecom.title}}</a></td>
 						</tr>
 					</table>
 				</div>
-				
-				<div class="list-group-item">
-					<div> <h4>Description:</h4> </div>
-					<div>
-						<p>
-							{{appInfos.appToShow.intro}}
-						</p>
-					</div>
-				</div>
+
+					<div class="list-group-item">
+						<section ng-init="tab = 1">
+							<ul class="nav nav-pills">
+								<li ng-class="{active:tab === 1}">
+									<a href ng-click="tab = 1">Description</a>
+								</li>
+								<li ng-class="{active:tab === 2}">
+									<a href ng-click="tab = 2">Developer</a>
+								</li>
+								<li >
+									<a href="{{appInfos.appToShow.url}}">Download</a>
+								</li>
+							</ul>
+						</section>
+						<div class="panel" ng-show="tab === 1">
+							<p>{{appInfos.appToShow.intro}}</p>
+						</div>
+						<div class="panel" ng-show="tab === 2">
+							<p>{{appInfos.appToShow.developer}}</p>
+						</div>
+
+					 </div>
 			</div>
 			</div>
 
